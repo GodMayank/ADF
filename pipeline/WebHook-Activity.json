@@ -1,0 +1,33 @@
+{
+	"name": "WebHook-Activity",
+	"properties": {
+		"description": "same as web activity.\nsynchronous ",
+		"activities": [
+			{
+				"name": "WebHook_SendEmail",
+				"description": "use to send email.",
+				"type": "WebHook",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://dummy.restapiexample.com/api/v1/employees",
+					"method": "POST",
+					"headers": {
+						"Content-type": "json"
+					},
+					"body": {
+						"type": "json"
+					},
+					"timeout": "00:10:00"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2023-12-28T12:46:58Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

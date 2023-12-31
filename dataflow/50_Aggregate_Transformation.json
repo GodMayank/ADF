@@ -1,0 +1,55 @@
+{
+	"name": "50_Aggregate_Transformation",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "CITY_CSV_FILE",
+						"type": "DatasetReference"
+					},
+					"name": "CityFile"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "MDF_Output",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "aggregate1"
+				},
+				{
+					"name": "sort1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          id as integer,",
+				"          name as string,",
+				"          countrycode as string,",
+				"          district as string,",
+				"          population as long",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> CityFile",
+				"CityFile aggregate(groupBy(countrycode),",
+				"     total_person = count(name),",
+				"          total_district = count(district),",
+				"          total_pop = sum(population)) ~> aggregate1",
+				"aggregate1 sort(desc(total_pop, true)) ~> sort1",
+				"sort1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
+			]
+		}
+	}
+}

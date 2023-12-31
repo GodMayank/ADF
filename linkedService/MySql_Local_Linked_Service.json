@@ -1,0 +1,22 @@
+{
+	"name": "MySql_Local_Linked_Service",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"parameters": {
+			"database_Name": {
+				"type": "string",
+				"defaultValue": "first_demo"
+			}
+		},
+		"annotations": [],
+		"type": "MySql",
+		"typeProperties": {
+			"connectionString": "server=127.0.0.1;port=3306;database=@{linkedService().database_Name};user=root;sslmode=1;usesystemtruststore=0",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJkOWUzYzIzNC05NzI1LTRiYWEtYmYyNS1iZDQ3NGZlZDA3YjQiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "Self-hosted-integration-runtime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

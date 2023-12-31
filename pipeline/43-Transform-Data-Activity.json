@@ -1,0 +1,72 @@
+{
+	"name": "43-Transform-Data-Activity",
+	"properties": {
+		"description": "Transform data Activities can be used to process and transform data in computer environments such as Azure data bricks or Azure HDInsight or Azure Data lake Analytics etc.\nexecute data flow activity\nazure function activity\ncustom activity\ndatabricks jar activity\ndatabricks python activity\ndata explorer command activity\ndata lake U-SQL Activity\nHDInsight Hive Activity\nHDInsight MapReduce Activity\nHDInsight Pig Activity\nHDInsight Spark Activity\nHDInsight Streaming Activity\nMachine learning Batch Execution Activity\nMachine learning update Resource Activity\nMachine learning Execute pipeline Activity\nStored procedure Activity",
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "emp_dataset",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "emp_output_dataset",
+						"type": "DatasetReference",
+						"parameters": {
+							"outputFolder": "temp"
+						}
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2023-12-29T06:25:08Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

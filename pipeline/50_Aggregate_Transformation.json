@@ -1,0 +1,123 @@
+{
+	"name": "50_Aggregate_Transformation",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data From MySQL to SA",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "MySqlSource"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ""
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "MySQL_Local_DataSet",
+						"type": "DatasetReference",
+						"parameters": {
+							"DatabaseName": "first_demo",
+							"TableName": "city"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "MySQL_To_Blob",
+						"type": "DatasetReference",
+						"parameters": {
+							"FolderName": {
+								"value": "@pipeline().parameters.InputFolderName",
+								"type": "Expression"
+							},
+							"FileName": {
+								"value": "@pipeline().parameters.InputFileName",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			},
+			{
+				"name": "Data flow1",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "Copy data From MySQL to SA",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "50_Aggregate_Transformation",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"parameters": {
+			"InputFileName": {
+				"type": "string",
+				"defaultValue": "city.csv"
+			},
+			"InputFolderName": {
+				"type": "string",
+				"defaultValue": "MySQL_To_Blob"
+			},
+			"OutputFileName": {
+				"type": "string",
+				"defaultValue": "Agg"
+			},
+			"OutputFolderName": {
+				"type": "string",
+				"defaultValue": "agg.csv"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-12-29T17:45:52Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

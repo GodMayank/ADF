@@ -1,0 +1,35 @@
+{
+	"name": "46-47-48-MDF",
+	"properties": {
+		"description": "MDF are visually designed data transformations in ADF. Data flows allow data engineers to develop graphical data transformation logic without writing code.\n2. Data flows are executed as activities within ADF pipeline using Data Flow Activities.\n3. ADF internally handles all the code translation, spark optimization and execution of transformation.",
+		"activities": [
+			{
+				"name": "Data flow1",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "46_MDF",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2023-12-29T17:45:52Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

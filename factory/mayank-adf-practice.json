@@ -1,0 +1,9 @@
+{
+	"name": "mayank-adf-practice",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "c401f0ad-a32a-4d04-acf3-9cfd443759b8",
+		"tenantId": "d747b2f3-e548-4cc8-8d69-e19f86fd82b1"
+	}
+}

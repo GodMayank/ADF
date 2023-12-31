@@ -1,0 +1,64 @@
+{
+	"name": "44-Stored-Procedure-Activity-ADF",
+	"properties": {
+		"description": "Stored procedure activity is one of the transformation activities that Data Factory supports. We run stored procedure as one of the step using this activity.",
+		"activities": [
+			{
+				"name": "Stored procedure1",
+				"type": "SqlServerStoredProcedure",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": []
+			},
+			{
+				"name": "Lookup1",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "Stored procedure1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "MySqlSource",
+						"query": {
+							"value": "CALL InsertPipelineExecutionDetails(\n    @pipeline().RunId,\n    @pipeline().DataFactory,\n    @pipeline().Pipeline,\n    @pipeline().TriggerName,\n    @pipeline().TriggerTime\n);",
+							"type": "Expression"
+						}
+					},
+					"dataset": {
+						"referenceName": "MySQL_Local_DataSet",
+						"type": "DatasetReference",
+						"parameters": {
+							"DatabaseName": "first_demo",
+							"TableName": "tbl_PipelineExecutionDetails"
+						}
+					},
+					"firstRowOnly": false
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2023-12-29T07:08:25Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
