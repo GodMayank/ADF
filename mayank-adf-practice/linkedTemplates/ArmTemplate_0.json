@@ -21,6 +21,39 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/Test')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Script1",
+						"type": "Script",
+						"state": "Inactive",
+						"onInactiveMarkAs": "Succeeded",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"scripts": [],
+							"scriptBlockExecutionTimeout": "02:00:00"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Wait-Activity')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -1247,244 +1280,6 @@
 				},
 				"annotations": [],
 				"lastPublishTime": "2023-12-28T09:47:16Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/emp_dataset')]",
-				"[concat(variables('factoryId'), '/datasets/emp_output_dataset')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/switch-Activity')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "1. Switch Activity provides the same functionality that switch statement provides in programming languages.\n2. It evaluates a set of activities corresponding to a case that matches the condition evalution.",
-				"activities": [
-					{
-						"name": "Switch1",
-						"description": "1. Switch Activity provides the same functionality that switch statement provides in programming languages.\n2. It evaluates a set of activities corresponding to a case that matches the condition evolution.",
-						"type": "Switch",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"on": {
-								"value": "@pipeline().parameters.FolderName",
-								"type": "Expression"
-							},
-							"cases": [
-								{
-									"value": "output1",
-									"activities": [
-										{
-											"name": "Copy data1",
-											"type": "Copy",
-											"dependsOn": [],
-											"policy": {
-												"timeout": "0.12:00:00",
-												"retry": 0,
-												"retryIntervalInSeconds": 30,
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"source": {
-													"type": "DelimitedTextSource",
-													"storeSettings": {
-														"type": "AzureBlobStorageReadSettings",
-														"recursive": true,
-														"enablePartitionDiscovery": false
-													},
-													"formatSettings": {
-														"type": "DelimitedTextReadSettings"
-													}
-												},
-												"sink": {
-													"type": "DelimitedTextSink",
-													"storeSettings": {
-														"type": "AzureBlobStorageWriteSettings"
-													},
-													"formatSettings": {
-														"type": "DelimitedTextWriteSettings",
-														"quoteAllText": true,
-														"fileExtension": ".txt"
-													}
-												},
-												"enableStaging": false,
-												"translator": {
-													"type": "TabularTranslator",
-													"typeConversion": true,
-													"typeConversionSettings": {
-														"allowDataTruncation": true,
-														"treatBooleanAsNumber": false
-													}
-												}
-											},
-											"inputs": [
-												{
-													"referenceName": "emp_dataset",
-													"type": "DatasetReference",
-													"parameters": {}
-												}
-											],
-											"outputs": [
-												{
-													"referenceName": "emp_output_dataset",
-													"type": "DatasetReference",
-													"parameters": {
-														"outputFolder": "switch/output1"
-													}
-												}
-											]
-										}
-									]
-								},
-								{
-									"value": "output2",
-									"activities": [
-										{
-											"name": "Copy data2",
-											"type": "Copy",
-											"dependsOn": [],
-											"policy": {
-												"timeout": "0.12:00:00",
-												"retry": 0,
-												"retryIntervalInSeconds": 30,
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"source": {
-													"type": "DelimitedTextSource",
-													"storeSettings": {
-														"type": "AzureBlobStorageReadSettings",
-														"recursive": true,
-														"enablePartitionDiscovery": false
-													},
-													"formatSettings": {
-														"type": "DelimitedTextReadSettings"
-													}
-												},
-												"sink": {
-													"type": "DelimitedTextSink",
-													"storeSettings": {
-														"type": "AzureBlobStorageWriteSettings"
-													},
-													"formatSettings": {
-														"type": "DelimitedTextWriteSettings",
-														"quoteAllText": true,
-														"fileExtension": ".txt"
-													}
-												},
-												"enableStaging": false,
-												"translator": {
-													"type": "TabularTranslator",
-													"typeConversion": true,
-													"typeConversionSettings": {
-														"allowDataTruncation": true,
-														"treatBooleanAsNumber": false
-													}
-												}
-											},
-											"inputs": [
-												{
-													"referenceName": "emp_dataset",
-													"type": "DatasetReference",
-													"parameters": {}
-												}
-											],
-											"outputs": [
-												{
-													"referenceName": "emp_output_dataset",
-													"type": "DatasetReference",
-													"parameters": {
-														"outputFolder": "switch/output2"
-													}
-												}
-											]
-										}
-									]
-								}
-							],
-							"defaultActivities": [
-								{
-									"name": "Copy data3",
-									"type": "Copy",
-									"dependsOn": [],
-									"policy": {
-										"timeout": "0.12:00:00",
-										"retry": 0,
-										"retryIntervalInSeconds": 30,
-										"secureOutput": false,
-										"secureInput": false
-									},
-									"userProperties": [],
-									"typeProperties": {
-										"source": {
-											"type": "DelimitedTextSource",
-											"storeSettings": {
-												"type": "AzureBlobStorageReadSettings",
-												"recursive": true,
-												"enablePartitionDiscovery": false
-											},
-											"formatSettings": {
-												"type": "DelimitedTextReadSettings"
-											}
-										},
-										"sink": {
-											"type": "DelimitedTextSink",
-											"storeSettings": {
-												"type": "AzureBlobStorageWriteSettings"
-											},
-											"formatSettings": {
-												"type": "DelimitedTextWriteSettings",
-												"quoteAllText": true,
-												"fileExtension": ".txt"
-											}
-										},
-										"enableStaging": false,
-										"translator": {
-											"type": "TabularTranslator",
-											"typeConversion": true,
-											"typeConversionSettings": {
-												"allowDataTruncation": true,
-												"treatBooleanAsNumber": false
-											}
-										}
-									},
-									"inputs": [
-										{
-											"referenceName": "emp_dataset",
-											"type": "DatasetReference",
-											"parameters": {}
-										}
-									],
-									"outputs": [
-										{
-											"referenceName": "emp_output_dataset",
-											"type": "DatasetReference",
-											"parameters": {
-												"outputFolder": "switch/default"
-											}
-										}
-									]
-								}
-							]
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"parameters": {
-					"FolderName": {
-						"type": "string",
-						"defaultValue": "output1"
-					}
-				},
-				"annotations": [],
-				"lastPublishTime": "2023-12-28T13:01:50Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/emp_dataset')]",
