@@ -1,0 +1,34 @@
+{
+	"name": "Mutual_Fund",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "MF_Files",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          date as string,",
+				"          NAV as string,",
+				"          amount_till_date as string,",
+				"          unit_till_date as string,",
+				"          current_nav as string,",
+				"          gain as string,",
+				"          gain_percent as string,",
+				"          net_amount as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1"
+			]
+		}
+	}
+}

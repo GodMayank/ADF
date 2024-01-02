@@ -1,0 +1,61 @@
+{
+	"name": "MF_Files",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"FolderName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "Canara-Robeco-Small-Cap-Fund-Direct-Growth.csv",
+				"container": "input"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "date",
+				"type": "String"
+			},
+			{
+				"name": "NAV",
+				"type": "String"
+			},
+			{
+				"name": "amount_till_date",
+				"type": "String"
+			},
+			{
+				"name": "unit_till_date",
+				"type": "String"
+			},
+			{
+				"name": "current_nav",
+				"type": "String"
+			},
+			{
+				"name": "gain",
+				"type": "String"
+			},
+			{
+				"name": "gain_percent",
+				"type": "String"
+			},
+			{
+				"name": "net_amount",
+				"type": "String"
+			}
+		]
+	}
+}
