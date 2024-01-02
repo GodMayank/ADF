@@ -108,6 +108,21 @@
 						},
 						{
 							"name": "derivedColumn5"
+						},
+						{
+							"name": "cast1"
+						},
+						{
+							"name": "cast2"
+						},
+						{
+							"name": "cast3"
+						},
+						{
+							"name": "cast4"
+						},
+						{
+							"name": "cast5"
 						}
 					],
 					"scriptLines": [
@@ -181,7 +196,27 @@
 						"Axis derive(FundHouse = 'Axis-Long-Term-Equity-Direct-Plan-Growth') ~> derivedColumn3",
 						"kotak derive(FundHouse = 'Kotak-Bluechip-Fund-Direct-Growth') ~> derivedColumn4",
 						"Quant derive(FundHouse = 'Quant-Active-Fund-Growth-Option-Direct-Plan') ~> derivedColumn5",
-						"derivedColumn1 sink(allowSchemaDrift: true,",
+						"derivedColumn3 cast(output(",
+						"          date as date 'yyyy-MM-dd'",
+						"     ),",
+						"     errors: true) ~> cast1",
+						"derivedColumn1 cast(output(",
+						"          date as date 'yyyy-MM-dd'",
+						"     ),",
+						"     errors: true) ~> cast2",
+						"derivedColumn2 cast(output(",
+						"          date as date 'yyyy-MM-dd'",
+						"     ),",
+						"     errors: true) ~> cast3",
+						"derivedColumn4 cast(output(",
+						"          date as date 'yyyy-MM-dd'",
+						"     ),",
+						"     errors: true) ~> cast4",
+						"derivedColumn5 cast(output(",
+						"          date as date 'yyyy-MM-dd'",
+						"     ),",
+						"     errors: true) ~> cast5",
+						"cast2 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     deletable:false,",
 						"     insertable:true,",
@@ -191,7 +226,7 @@
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true,",
 						"     errorHandlingOption: 'stopOnFirstError') ~> sink1",
-						"derivedColumn2 sink(allowSchemaDrift: true,",
+						"cast3 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     deletable:false,",
 						"     insertable:true,",
@@ -201,7 +236,7 @@
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true,",
 						"     errorHandlingOption: 'stopOnFirstError') ~> sink2",
-						"derivedColumn3 sink(allowSchemaDrift: true,",
+						"cast1 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     deletable:false,",
 						"     insertable:true,",
@@ -211,7 +246,7 @@
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true,",
 						"     errorHandlingOption: 'stopOnFirstError') ~> sink3",
-						"derivedColumn4 sink(allowSchemaDrift: true,",
+						"cast4 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     deletable:false,",
 						"     insertable:true,",
@@ -221,7 +256,7 @@
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true,",
 						"     errorHandlingOption: 'stopOnFirstError') ~> sink4",
-						"derivedColumn5 sink(allowSchemaDrift: true,",
+						"cast5 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     deletable:false,",
 						"     insertable:true,",
