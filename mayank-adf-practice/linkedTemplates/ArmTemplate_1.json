@@ -13,6 +13,387 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/MutualFund')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "MutualFund"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ICICI')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "ICICI-Prudential-Technology-Direct-Plan-Growth.csv",
+						"container": "input"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "date",
+						"type": "String"
+					},
+					{
+						"name": "NAV",
+						"type": "String"
+					},
+					{
+						"name": "amount_till_date",
+						"type": "String"
+					},
+					{
+						"name": "unit_till_date",
+						"type": "String"
+					},
+					{
+						"name": "current_nav",
+						"type": "String"
+					},
+					{
+						"name": "gain",
+						"type": "String"
+					},
+					{
+						"name": "gain_percent",
+						"type": "String"
+					},
+					{
+						"name": "net_amount",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Axis')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "Axis-Long-Term-Equity-Direct-Plan-Growth.csv",
+						"container": "input"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "date",
+						"type": "String"
+					},
+					{
+						"name": "NAV",
+						"type": "String"
+					},
+					{
+						"name": "amount_till_date",
+						"type": "String"
+					},
+					{
+						"name": "unit_till_date",
+						"type": "String"
+					},
+					{
+						"name": "current_nav",
+						"type": "String"
+					},
+					{
+						"name": "gain",
+						"type": "String"
+					},
+					{
+						"name": "gain_percent",
+						"type": "String"
+					},
+					{
+						"name": "net_amount",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Kotak')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "Kotak-Bluechip-Fund-Direct-Growth.csv",
+						"container": "input"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "date",
+						"type": "String"
+					},
+					{
+						"name": "NAV",
+						"type": "String"
+					},
+					{
+						"name": "amount_till_date",
+						"type": "String"
+					},
+					{
+						"name": "unit_till_date",
+						"type": "String"
+					},
+					{
+						"name": "current_nav",
+						"type": "String"
+					},
+					{
+						"name": "gain",
+						"type": "String"
+					},
+					{
+						"name": "gain_percent",
+						"type": "String"
+					},
+					{
+						"name": "net_amount",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Quant')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "Quant-Active-Fund-Growth-Option-Direct-Plan.csv",
+						"container": "input"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "date",
+						"type": "String"
+					},
+					{
+						"name": "NAV",
+						"type": "String"
+					},
+					{
+						"name": "amount_till_date",
+						"type": "String"
+					},
+					{
+						"name": "unit_till_date",
+						"type": "String"
+					},
+					{
+						"name": "current_nav",
+						"type": "String"
+					},
+					{
+						"name": "gain",
+						"type": "String"
+					},
+					{
+						"name": "gain_percent",
+						"type": "String"
+					},
+					{
+						"name": "net_amount",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/41-Validation-Activity')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "you can use a validation in a pipeline to ensure the pipeline only continues execution once it ahs validated the attached dataset refernce exists.",
+				"activities": [
+					{
+						"name": "Validation1",
+						"type": "Validation",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"dataset": {
+								"referenceName": "emp_dataset",
+								"type": "DatasetReference",
+								"parameters": {}
+							},
+							"timeout": "0.12:00:00",
+							"sleep": 10
+						}
+					},
+					{
+						"name": "Copy data on success",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Validation1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"quoteAllText": true,
+									"fileExtension": ".txt"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "emp_dataset",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "emp_output_dataset",
+								"type": "DatasetReference",
+								"parameters": {
+									"outputFolder": "output1"
+								}
+							}
+						]
+					},
+					{
+						"name": "WebHook send mail on failure",
+						"type": "WebHook",
+						"dependsOn": [
+							{
+								"activity": "Validation1",
+								"dependencyConditions": [
+									"Failed"
+								]
+							}
+						],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": "https://dummy.restapiexample.com/api/v1/employees",
+							"method": "POST",
+							"headers": {},
+							"body": {
+								"type": "body"
+							},
+							"timeout": "00:10:00"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": [],
+				"lastPublishTime": "2023-12-28T16:11:35Z"
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/43-Transform-Data-Activity')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -1443,707 +1824,6 @@
 				}
 			},
 			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/42_Lookup_Activity')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Lookup1",
-						"type": "Lookup",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "MySqlSource",
-								"query": "select foldername from tbl_output_folder"
-							},
-							"dataset": {
-								"referenceName": "MySQL_Local_DataSet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						}
-					},
-					{
-						"name": "Copy data1",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "Lookup1",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
-								}
-							},
-							"sink": {
-								"type": "DelimitedTextSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "DelimitedTextWriteSettings",
-									"quoteAllText": true,
-									"fileExtension": ".txt"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "emp_dataset",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "emp_output_dataset",
-								"type": "DatasetReference",
-								"parameters": {
-									"outputFolder": {
-										"value": "@activity('Lookup1').output.firstRow.foldername",
-										"type": "Expression"
-									}
-								}
-							}
-						]
-					},
-					{
-						"name": "Lookup2",
-						"type": "Lookup",
-						"dependsOn": [
-							{
-								"activity": "Copy data1",
-								"dependencyConditions": [
-									"Completed"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "MySqlSource",
-								"query": "select foldername from tbl_output_folder"
-							},
-							"dataset": {
-								"referenceName": "MySQL_Local_DataSet",
-								"type": "DatasetReference",
-								"parameters": {}
-							},
-							"firstRowOnly": false
-						}
-					},
-					{
-						"name": "ForEach1",
-						"type": "ForEach",
-						"dependsOn": [
-							{
-								"activity": "Lookup2",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"items": {
-								"value": "@activity('Lookup2').output.value",
-								"type": "Expression"
-							},
-							"activities": [
-								{
-									"name": "Copy data2",
-									"type": "Copy",
-									"dependsOn": [],
-									"policy": {
-										"timeout": "0.12:00:00",
-										"retry": 0,
-										"retryIntervalInSeconds": 30,
-										"secureOutput": false,
-										"secureInput": false
-									},
-									"userProperties": [],
-									"typeProperties": {
-										"source": {
-											"type": "DelimitedTextSource",
-											"storeSettings": {
-												"type": "AzureBlobStorageReadSettings",
-												"recursive": true,
-												"enablePartitionDiscovery": false
-											},
-											"formatSettings": {
-												"type": "DelimitedTextReadSettings"
-											}
-										},
-										"sink": {
-											"type": "DelimitedTextSink",
-											"storeSettings": {
-												"type": "AzureBlobStorageWriteSettings"
-											},
-											"formatSettings": {
-												"type": "DelimitedTextWriteSettings",
-												"quoteAllText": true,
-												"fileExtension": ".txt"
-											}
-										},
-										"enableStaging": false,
-										"translator": {
-											"type": "TabularTranslator",
-											"typeConversion": true,
-											"typeConversionSettings": {
-												"allowDataTruncation": true,
-												"treatBooleanAsNumber": false
-											}
-										}
-									},
-									"inputs": [
-										{
-											"referenceName": "emp_dataset",
-											"type": "DatasetReference",
-											"parameters": {}
-										}
-									],
-									"outputs": [
-										{
-											"referenceName": "emp_output_dataset",
-											"type": "DatasetReference",
-											"parameters": {
-												"outputFolder": {
-													"value": "@item().foldername",
-													"type": "Expression"
-												}
-											}
-										}
-									]
-								}
-							]
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"annotations": [],
-				"lastPublishTime": "2023-12-29T07:01:25Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/MySQL_Local_DataSet')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/44-Stored-Procedure-Activity-ADF')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Stored procedure activity is one of the transformation activities that Data Factory supports. We run stored procedure as one of the step using this activity.",
-				"activities": [
-					{
-						"name": "Stored procedure1",
-						"type": "SqlServerStoredProcedure",
-						"state": "Inactive",
-						"onInactiveMarkAs": "Succeeded",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {}
-					},
-					{
-						"name": "Lookup1",
-						"type": "Lookup",
-						"dependsOn": [
-							{
-								"activity": "Stored procedure1",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "MySqlSource",
-								"query": {
-									"value": "CALL InsertPipelineExecutionDetails(\n    @pipeline().RunId,\n    @pipeline().DataFactory,\n    @pipeline().Pipeline,\n    @pipeline().TriggerName,\n    @pipeline().TriggerTime\n);",
-									"type": "Expression"
-								}
-							},
-							"dataset": {
-								"referenceName": "MySQL_Local_DataSet",
-								"type": "DatasetReference",
-								"parameters": {
-									"DatabaseName": "first_demo",
-									"TableName": "tbl_PipelineExecutionDetails"
-								}
-							},
-							"firstRowOnly": false
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"annotations": [],
-				"lastPublishTime": "2023-12-29T07:08:25Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/MySQL_Local_DataSet')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/46-47-48-MDF')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "MDF are visually designed data transformations in ADF. Data flows allow data engineers to develop graphical data transformation logic without writing code.\n2. Data flows are executed as activities within ADF pipeline using Data Flow Activities.\n3. ADF internally handles all the code translation, spark optimization and execution of transformation.",
-				"activities": [
-					{
-						"name": "Data flow1",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "46_MDF",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"EmployeeData": {},
-									"DeptData": {},
-									"OutputData": {}
-								}
-							},
-							"staging": {},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
-							},
-							"traceLevel": "Fine"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"annotations": [],
-				"lastPublishTime": "2023-12-29T17:45:52Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/dataflows/46_MDF')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/49_Filter_Transformation')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Data flow1",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "49_Filter_Transformation_MDF",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"Employee": {},
-									"PayrollEmployees": {}
-								}
-							},
-							"staging": {},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
-							},
-							"traceLevel": "Fine"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"annotations": [],
-				"lastPublishTime": "2023-12-29T13:14:07Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/dataflows/49_Filter_Transformation_MDF')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/50_Aggregate_Transformation')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Copy data From MySQL to SA",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "MySqlSource"
-							},
-							"sink": {
-								"type": "DelimitedTextSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								},
-								"formatSettings": {
-									"type": "DelimitedTextWriteSettings",
-									"quoteAllText": true,
-									"fileExtension": ""
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "MySQL_Local_DataSet",
-								"type": "DatasetReference",
-								"parameters": {
-									"DatabaseName": "first_demo",
-									"TableName": "city"
-								}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "MySQL_To_Blob",
-								"type": "DatasetReference",
-								"parameters": {
-									"FolderName": {
-										"value": "@pipeline().parameters.InputFolderName",
-										"type": "Expression"
-									},
-									"FileName": {
-										"value": "@pipeline().parameters.InputFileName",
-										"type": "Expression"
-									}
-								}
-							}
-						]
-					},
-					{
-						"name": "Data flow1",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [
-							{
-								"activity": "Copy data From MySQL to SA",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "50_Aggregate_Transformation",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"CityFile": {},
-									"sink1": {}
-								}
-							},
-							"staging": {},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
-							},
-							"traceLevel": "Fine"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"parameters": {
-					"InputFileName": {
-						"type": "string",
-						"defaultValue": "city.csv"
-					},
-					"InputFolderName": {
-						"type": "string",
-						"defaultValue": "MySQL_To_Blob"
-					},
-					"OutputFileName": {
-						"type": "string",
-						"defaultValue": "Agg"
-					},
-					"OutputFolderName": {
-						"type": "string",
-						"defaultValue": "agg.csv"
-					}
-				},
-				"annotations": [],
-				"lastPublishTime": "2023-12-29T17:45:52Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/MySQL_Local_DataSet')]",
-				"[concat(variables('factoryId'), '/dataflows/50_Aggregate_Transformation')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/51-60-DataFlow-Trigger')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "51 join data flow",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "51_join",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"source1": {},
-									"source2": {},
-									"sink1": {}
-								}
-							},
-							"staging": {},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
-							},
-							"traceLevel": "Fine"
-						}
-					},
-					{
-						"name": "60 pivot data flow",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [
-							{
-								"activity": "53 Derived Column",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "60_pivot",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"EmployeeFile": {},
-									"sink1": {}
-								}
-							},
-							"staging": {},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
-							},
-							"traceLevel": "Fine"
-						}
-					},
-					{
-						"name": "51 conditional_split",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [
-							{
-								"activity": "51 join data flow",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "52_conditional_split",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"employeeDataset": {},
-									"PayrollDept": {},
-									"ItDept": {},
-									"MiscellaneousDept": {},
-									"HRdept": {}
-								}
-							},
-							"staging": {},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
-							},
-							"traceLevel": "Fine"
-						}
-					},
-					{
-						"name": "53 Derived Column",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [
-							{
-								"activity": "51 conditional_split",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "53_Derived_Column",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"employeeDataset": {},
-									"sink1": {}
-								}
-							},
-							"staging": {},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
-							},
-							"traceLevel": "Fine"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"annotations": [],
-				"lastPublishTime": "2023-12-30T07:10:39Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/dataflows/51_join')]",
-				"[concat(variables('factoryId'), '/dataflows/60_pivot')]",
-				"[concat(variables('factoryId'), '/dataflows/52_conditional_split')]",
-				"[concat(variables('factoryId'), '/dataflows/53_Derived_Column')]"
-			]
 		}
 	]
 }

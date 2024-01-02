@@ -3253,10 +3253,622 @@
 					},
 					"mode": "Microbatch"
 				},
+				"status": "Stopped",
 				"allowVNetOverride": false
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Mutual_Fund')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "Canara",
+								"type": "DatasetReference"
+							},
+							"name": "Canara"
+						},
+						{
+							"dataset": {
+								"referenceName": "ICICI",
+								"type": "DatasetReference"
+							},
+							"name": "ICICI"
+						},
+						{
+							"dataset": {
+								"referenceName": "Axis",
+								"type": "DatasetReference"
+							},
+							"name": "Axis"
+						},
+						{
+							"dataset": {
+								"referenceName": "Kotak",
+								"type": "DatasetReference"
+							},
+							"name": "kotak"
+						},
+						{
+							"dataset": {
+								"referenceName": "Quant",
+								"type": "DatasetReference"
+							},
+							"name": "Quant"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "MutualFund",
+								"type": "DatasetReference"
+							},
+							"name": "sink1"
+						},
+						{
+							"dataset": {
+								"referenceName": "MutualFund",
+								"type": "DatasetReference"
+							},
+							"name": "sink2"
+						},
+						{
+							"dataset": {
+								"referenceName": "MutualFund",
+								"type": "DatasetReference"
+							},
+							"name": "sink3"
+						},
+						{
+							"dataset": {
+								"referenceName": "MutualFund",
+								"type": "DatasetReference"
+							},
+							"name": "sink4"
+						},
+						{
+							"dataset": {
+								"referenceName": "MutualFund",
+								"type": "DatasetReference"
+							},
+							"name": "sink5"
+						}
+					],
+					"transformations": [
+						{
+							"name": "derivedColumn1"
+						},
+						{
+							"name": "derivedColumn2"
+						},
+						{
+							"name": "derivedColumn3"
+						},
+						{
+							"name": "derivedColumn4"
+						},
+						{
+							"name": "derivedColumn5"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          date as string,",
+						"          NAV as string,",
+						"          amount_till_date as string,",
+						"          unit_till_date as string,",
+						"          current_nav as string,",
+						"          gain as string,",
+						"          gain_percent as string,",
+						"          net_amount as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> Canara",
+						"source(output(",
+						"          date as string,",
+						"          NAV as string,",
+						"          amount_till_date as string,",
+						"          unit_till_date as string,",
+						"          current_nav as string,",
+						"          gain as string,",
+						"          gain_percent as string,",
+						"          net_amount as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> ICICI",
+						"source(output(",
+						"          date as string,",
+						"          NAV as string,",
+						"          amount_till_date as string,",
+						"          unit_till_date as string,",
+						"          current_nav as string,",
+						"          gain as string,",
+						"          gain_percent as string,",
+						"          net_amount as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> Axis",
+						"source(output(",
+						"          date as string,",
+						"          NAV as string,",
+						"          amount_till_date as string,",
+						"          unit_till_date as string,",
+						"          current_nav as string,",
+						"          gain as string,",
+						"          gain_percent as string,",
+						"          net_amount as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> kotak",
+						"source(output(",
+						"          date as string,",
+						"          NAV as string,",
+						"          amount_till_date as string,",
+						"          unit_till_date as string,",
+						"          current_nav as string,",
+						"          gain as string,",
+						"          gain_percent as string,",
+						"          net_amount as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> Quant",
+						"Canara derive(FundHouse = 'Canara-Robeco-Small-Cap-Fund-Direct-Growth') ~> derivedColumn1",
+						"ICICI derive(FundHouse = 'ICICI-Prudential-Technology-Direct-Plan-Growth') ~> derivedColumn2",
+						"Axis derive(FundHouse = 'Axis-Long-Term-Equity-Direct-Plan-Growth') ~> derivedColumn3",
+						"kotak derive(FundHouse = 'Kotak-Bluechip-Fund-Direct-Growth') ~> derivedColumn4",
+						"Quant derive(FundHouse = 'Quant-Active-Fund-Growth-Option-Direct-Plan') ~> derivedColumn5",
+						"derivedColumn1 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:false,",
+						"     format: 'table',",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError') ~> sink1",
+						"derivedColumn2 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:false,",
+						"     format: 'table',",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError') ~> sink2",
+						"derivedColumn3 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:false,",
+						"     format: 'table',",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError') ~> sink3",
+						"derivedColumn4 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:false,",
+						"     format: 'table',",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError') ~> sink4",
+						"derivedColumn5 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:false,",
+						"     format: 'table',",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError') ~> sink5"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/Canara')]",
+				"[concat(variables('factoryId'), '/datasets/ICICI')]",
+				"[concat(variables('factoryId'), '/datasets/Axis')]",
+				"[concat(variables('factoryId'), '/datasets/Kotak')]",
+				"[concat(variables('factoryId'), '/datasets/Quant')]",
+				"[concat(variables('factoryId'), '/datasets/MutualFund')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Mutual_Funds')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Data flow1",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "Mutual_Fund",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"Canara": {},
+									"ICICI": {},
+									"Axis": {},
+									"kotak": {},
+									"Quant": {},
+									"sink1": {},
+									"sink2": {},
+									"sink3": {},
+									"sink4": {},
+									"sink5": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/Mutual_Fund')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Canara')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "Canara-Robeco-Small-Cap-Fund-Direct-Growth.csv",
+						"container": "input"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "date",
+						"type": "String"
+					},
+					{
+						"name": "NAV",
+						"type": "String"
+					},
+					{
+						"name": "amount_till_date",
+						"type": "String"
+					},
+					{
+						"name": "unit_till_date",
+						"type": "String"
+					},
+					{
+						"name": "current_nav",
+						"type": "String"
+					},
+					{
+						"name": "gain",
+						"type": "String"
+					},
+					{
+						"name": "gain_percent",
+						"type": "String"
+					},
+					{
+						"name": "net_amount",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/MutualFund')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "MutualFund"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ICICI')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "ICICI-Prudential-Technology-Direct-Plan-Growth.csv",
+						"container": "input"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "date",
+						"type": "String"
+					},
+					{
+						"name": "NAV",
+						"type": "String"
+					},
+					{
+						"name": "amount_till_date",
+						"type": "String"
+					},
+					{
+						"name": "unit_till_date",
+						"type": "String"
+					},
+					{
+						"name": "current_nav",
+						"type": "String"
+					},
+					{
+						"name": "gain",
+						"type": "String"
+					},
+					{
+						"name": "gain_percent",
+						"type": "String"
+					},
+					{
+						"name": "net_amount",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Axis')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "Axis-Long-Term-Equity-Direct-Plan-Growth.csv",
+						"container": "input"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "date",
+						"type": "String"
+					},
+					{
+						"name": "NAV",
+						"type": "String"
+					},
+					{
+						"name": "amount_till_date",
+						"type": "String"
+					},
+					{
+						"name": "unit_till_date",
+						"type": "String"
+					},
+					{
+						"name": "current_nav",
+						"type": "String"
+					},
+					{
+						"name": "gain",
+						"type": "String"
+					},
+					{
+						"name": "gain_percent",
+						"type": "String"
+					},
+					{
+						"name": "net_amount",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Kotak')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "Kotak-Bluechip-Fund-Direct-Growth.csv",
+						"container": "input"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "date",
+						"type": "String"
+					},
+					{
+						"name": "NAV",
+						"type": "String"
+					},
+					{
+						"name": "amount_till_date",
+						"type": "String"
+					},
+					{
+						"name": "unit_till_date",
+						"type": "String"
+					},
+					{
+						"name": "current_nav",
+						"type": "String"
+					},
+					{
+						"name": "gain",
+						"type": "String"
+					},
+					{
+						"name": "gain_percent",
+						"type": "String"
+					},
+					{
+						"name": "net_amount",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Quant')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "Quant-Active-Fund-Growth-Option-Direct-Plan.csv",
+						"container": "input"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "date",
+						"type": "String"
+					},
+					{
+						"name": "NAV",
+						"type": "String"
+					},
+					{
+						"name": "amount_till_date",
+						"type": "String"
+					},
+					{
+						"name": "unit_till_date",
+						"type": "String"
+					},
+					{
+						"name": "current_nav",
+						"type": "String"
+					},
+					{
+						"name": "gain",
+						"type": "String"
+					},
+					{
+						"name": "gain_percent",
+						"type": "String"
+					},
+					{
+						"name": "net_amount",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
 			]
 		}
 	]
