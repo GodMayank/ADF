@@ -1,5 +1,5 @@
 {
-	"name": "Canara",
+	"name": "Kotak",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureBlobStorage1",
@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"folderPath": "Canara-Robeco-Small-Cap-Fund-Direct-Growth.csv",
+				"folderPath": "Kotak-Bluechip-Fund-Direct-Growth.csv",
 				"container": "input"
 			},
 			"columnDelimiter": ",",

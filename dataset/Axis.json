@@ -1,5 +1,5 @@
 {
-	"name": "Canara",
+	"name": "Axis",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureBlobStorage1",
@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"folderPath": "Canara-Robeco-Small-Cap-Fund-Direct-Growth.csv",
+				"folderPath": "Axis-Long-Term-Equity-Direct-Plan-Growth.csv",
 				"container": "input"
 			},
 			"columnDelimiter": ",",

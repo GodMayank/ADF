@@ -1,5 +1,5 @@
 {
-	"name": "Canara",
+	"name": "Quant",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureBlobStorage1",
@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"folderPath": "Canara-Robeco-Small-Cap-Fund-Direct-Growth.csv",
+				"folderPath": "Quant-Active-Fund-Growth-Option-Direct-Plan.csv",
 				"container": "input"
 			},
 			"columnDelimiter": ",",
