@@ -1,0 +1,16 @@
+{
+	"name": "Teradata1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "Teradata",
+		"typeProperties": {
+			"connectionString": "dbcname=192.168.148.128;uid=dbc",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIzNTZiOTY3Zi0yZDA5LTRhODMtYWUzMC1kOGJlNmRjMDI1YmQiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "Self-hosted-integration-runtime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
