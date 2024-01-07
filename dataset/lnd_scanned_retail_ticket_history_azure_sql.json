@@ -1,0 +1,166 @@
+{
+	"name": "lnd_scanned_retail_ticket_history_azure_sql",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "STT",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ACCOUNT_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "DEVICE_ID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TRANSCATION_ID",
+				"type": "nvarchar"
+			},
+			{
+				"name": "START_GAME",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "END_GAME",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "NUMBER_OF_GAMES",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TICKET_STATUS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SCAN_INFO_STATUS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "STATUS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PROMO_WINS",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CHECK_COLLECT",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "WIN_AMOUNT",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "REFUND_AMOUNT",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "TICKET_COST",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "VENUE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BET_SELL_TIME",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "SELECTIONS",
+				"type": "nvarchar"
+			},
+			{
+				"name": "JURISDICTION",
+				"type": "nvarchar"
+			},
+			{
+				"name": "COST_PER_CHANCE",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "PRICE_TABLE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "BET_TYPE",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MULTIPLIER_GAMES",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "REPLAY",
+				"type": "nvarchar"
+			},
+			{
+				"name": "QUICK_PICK",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CHANNEL",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SCAN_DATE",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "LAST_MODIFIED",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "LOAD_DTTM",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "LOAD_REQUESTID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SOURCE",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "lnd_scanned_retail_ticket_history"
+		}
+	}
+}

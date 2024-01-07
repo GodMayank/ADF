@@ -1,0 +1,18 @@
+{
+	"name": "lnd_scanned_retail_ticket_history_mysql",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "MySql_Local_Linked_Service",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"database_Name": "der_landing"
+			}
+		},
+		"annotations": [],
+		"type": "MySqlTable",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "`lnd_scanned_retail_ticket_history`"
+		}
+	}
+}
