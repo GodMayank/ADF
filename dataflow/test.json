@@ -14,6 +14,10 @@
 			],
 			"sinks": [
 				{
+					"dataset": {
+						"referenceName": "Axis",
+						"type": "DatasetReference"
+					},
 					"name": "sink1"
 				}
 			],
@@ -29,6 +33,16 @@
 				"     format: 'table') ~> source1",
 				"source1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     input(",
+				"          date as string,",
+				"          NAV as string,",
+				"          amount_till_date as string,",
+				"          unit_till_date as string,",
+				"          current_nav as string,",
+				"          gain as string,",
+				"          gain_percent as string,",
+				"          net_amount as string",
+				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> sink1"
 			]
