@@ -8,11 +8,23 @@
 		"AzureBlobStorage1_connectionString": {
 			"value": ""
 		},
-		"MySql_Local_Linked_Service_connectionString": {
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
+		"AzurePostgreSql1_connectionString": {
 			"value": ""
 		},
 		"AzureSqlDatabase1_connectionString": {
 			"value": ""
+		},
+		"MySql_Local_Linked_Service_connectionString": {
+			"value": ""
+		},
+		"Teradata1_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://storageaccountmayank.dfs.core.windows.net/"
 		},
 		"containerUri": {
 			"value": ""
